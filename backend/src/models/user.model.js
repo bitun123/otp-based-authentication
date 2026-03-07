@@ -20,11 +20,18 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, "password is required"],
+      select: false,
     },
     otpVerified: {
       type: Boolean,
       default: false,
+    },
+    role:{
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
     }
+        
   },
   {
     timestamps: true,

@@ -2,6 +2,7 @@ const userModel = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const { sendOtp, verifyOtp } = require("../services/twilioService");
 const jwt = require("jsonwebtoken");
+const redis = require("../config/cache");
 
 async function registerController(req, res) {
   try {
@@ -32,6 +33,7 @@ async function registerController(req, res) {
     const token = jwt.sign(
       {
         id: user._id,
+          role: user.role
       },
       process.env.JWT_SECRET_KEY,
       { expiresIn: "1h" },
@@ -102,8 +104,95 @@ async function resendOtpController(req, res) {
   }
 }
 
+async function loginController(req, res) {
+  try {
+    const { userName, email, password } = req.body;
+    const user = await userModel
+      .findOne({
+        $or: [{ userName }, { email }],
+      })
+      .select("+password");
+
+    if (!user) {
+      return res.status(400).json({
+        message: "invalid credentials",
+      });
+    }
+
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordMatch) {
+      return res.status(400).json({
+        message: "invalid credentials",
+      });
+    }
+
+    const token = jwt.sign(
+      {
+        id: user._id,
+        role: user.role
+      },
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn: "3d",
+      },
+    );
+
+    res.cookie("token", token);
+
+    res.status(200).json({
+      message: "user logged in successfully",
+      user: {
+        userName: user.userName,
+        email: user.email,
+      },
+      token,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+}
+
+
+async function getProfileController(req,res){
+  try {
+      const user = await userModel.findById(req.user.id);
+  res.status(200).json({
+    message: "all users fetched successfully",
+    user,
+  });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+}
+
+async function logoutController(req, res) {
+  try {
+  const token = req.cookies.token;
+  await redis.set(token, "blacklisted");
+  res.clearCookie("token");
+
+  res.status(201).json({
+    message: "user logged out successfully",
+    token,
+  });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+}
+
+
 module.exports = {
   registerController,
   verifyOtpController,
   resendOtpController,
+  loginController,
+  getProfileController,
+  logoutController
 };
