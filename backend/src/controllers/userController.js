@@ -18,6 +18,8 @@ async function registerController(req, res) {
 
     const otp = await sendOtp(phone);
 
+    req.session.phone = phone;
+
     const hash = await bcrypt.hash(password, 10);
 
     const user = await userModel.create({
@@ -48,7 +50,8 @@ async function registerController(req, res) {
 
 async function verifyOtpController(req, res) {
   try {
-    const { otp, phone } = req.body;
+    const { otp } = req.body;
+    const phone = req.session.phone;
 
     const user = await userModel.findOne({
       otpVerified: false,
@@ -79,4 +82,28 @@ async function verifyOtpController(req, res) {
   }
 }
 
-module.exports = { registerController, verifyOtpController };
+async function resendOtpController(req, res) {
+  try {
+    const phone = req.session.phone;
+    if (!phone) {
+      return res.status(400).json({
+        message: "Phone number not found in session",
+      });
+    }
+    await sendOtp(phone);
+    res.json({
+      success: true,
+      message: "OTP resent successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+}
+
+module.exports = {
+  registerController,
+  verifyOtpController,
+  resendOtpController,
+};

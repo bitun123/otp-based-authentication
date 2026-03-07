@@ -7,5 +7,7 @@ userRoutes.post("/registration",userController.registerController)
 
 userRoutes.post("/verifyOtp",userController.verifyOtpController)
 
+userRoutes.post("/resendOtp",userController.resendOtpController)
+
 
 module.exports = userRoutes;
