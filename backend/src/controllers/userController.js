@@ -55,6 +55,7 @@ async function updateUserProfileController(req, res) {
   }
 }
 
+// Get user's favorite movies
 async function getFavoriteMoviesController(req, res) {
   try {
     const userId = req.user.id;
@@ -75,6 +76,8 @@ async function getFavoriteMoviesController(req, res) {
   }
 }
 
+
+// Add a movie to user's favorites
 async function addFavoriteMovieController(req, res) {
   try {
     const userId = req.user.id;
@@ -116,6 +119,8 @@ async function addFavoriteMovieController(req, res) {
   }
 }
 
+
+// Remove a movie from user's favorites
 async function removeFavoriteMovieController(req, res) {
   try {
     const userId = req.user.id;
@@ -148,10 +153,18 @@ console.log("Favorite removed:", favorite);
   }
 }
 
+async function addToHistoryController(req, res) {
+
+}
+
+
+
+
 module.exports = {
   getUserProfileController,
   updateUserProfileController,
   getFavoriteMoviesController,
   addFavoriteMovieController,
-  removeFavoriteMovieController
+  removeFavoriteMovieController,
+  addToHistoryController
 };
