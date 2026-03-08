@@ -34,9 +34,9 @@ adminRoutes.post("/movies/add-movie", upload.single("posterUrl"), authUser, isAd
 
 
 
+adminRoutes.patch("/movies/update-movie/:movieId", upload.single("posterUrl"), authUser, isAdmin, adminController.updateMovieController);
 
-
-
+adminRoutes.delete("/movies/delete-movie/:movieId", authUser, isAdmin, adminController.deleteMovieController);
 
 
 

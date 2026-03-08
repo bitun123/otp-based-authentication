@@ -114,6 +114,7 @@ async function deleteUserController(req, res) {
   }
 }
 
+//admin access  all movies
 async function getAllMoviesController(req, res) {
   try {
     const movies = await cachedMovieModel
@@ -128,6 +129,7 @@ async function getAllMoviesController(req, res) {
   }
 }
 
+//admin can create new movies
 async function addMovieController(req, res) {
   try {
     const {
@@ -149,7 +151,6 @@ async function addMovieController(req, res) {
       err.statusCode = 400;
       throw err;
     }
-
 
     console.log("File received:", req.file);
     console.log("Uploading to ImageKit...");
@@ -189,7 +190,6 @@ async function addMovieController(req, res) {
       message: "Movie added successfully",
       movie,
     });
-
   } catch (error) {
     res.status(error.statusCode || 500).json({
       message: error.message,
@@ -197,6 +197,90 @@ async function addMovieController(req, res) {
   }
 }
 
+async function updateMovieController(req, res) {
+  try {
+    const movieId = req.params.movieId;
+    const updates = req.body;
+
+    if (!movieId) {
+      const err = new Error("Movie ID is required");
+      err.statusCode = 400;
+      throw err;
+    }
+
+    // Find the movie first
+    const movie = await customMovieModel.findById(movieId);
+
+    if (!movie) {
+      const err = new Error("Movie not found");
+      err.statusCode = 404;
+      throw err;
+    }
+
+    // Update allowed fields
+    const allowedUpdates = [
+      "title",
+      "description",
+      "releaseDate",
+      "genre",
+      "category",
+      "actorNames",
+      "duration",
+      "posterUrl",
+      "trailerUrl",
+      "videoUrl",
+      "averageRating",
+      "totalRatings",
+    ];
+
+    Object.keys(updates).forEach((key) => {
+      if (allowedUpdates.includes(key)) {
+        if (key === "genre") {
+          movie[key] = updates[key].toLowerCase();
+        } else {
+          movie[key] = updates[key];
+        }
+      }
+    });
+
+    await movie.save();
+
+    res.status(200).json({
+      message: "Movie updated successfully",
+      movie,
+    });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({
+      message: error.message,
+    });
+  }
+}
+
+async function deleteMovieController(req, res) {
+  try {
+    const movieId = req.params.movieId;
+    if (!movieId) {
+      const err = new Error("Movie ID is required");
+      err.statusCode = 400;
+      throw err;
+    }
+
+    const deleteMovie = await customMovieModel.findByIdAndDelete(movieId);
+
+    if (!deleteMovie) {
+      const err = new Error("Movie not found");
+      err.statusCode = 404;
+      throw err;
+    }
+    res.status(200).json({
+      message: "Movie deleted successfully",
+    });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({
+      message: error.message,
+    });
+  }
+}
 module.exports = {
   makeAdminController,
   getAllUsersController,
@@ -205,4 +289,6 @@ module.exports = {
   deleteUserController,
   getAllMoviesController,
   addMovieController,
+  updateMovieController,
+  deleteMovieController,
 };
