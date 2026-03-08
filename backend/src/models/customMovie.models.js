@@ -2,9 +2,16 @@ const mongoose = require("mongoose");
 
 const customMovieSchema = new mongoose.Schema(
   {
+    tmdbId: {
+      type: Number,
+      required: [true, "TMDB ID is required"],
+      unique: true,
+      index: true,
+    },
     title: {
       type: String,
       required: [true, "Title is required"],
+      unique: true,
       trim: true,
       index: true,
     },
@@ -35,10 +42,10 @@ const customMovieSchema = new mongoose.Schema(
       type: [String],
       default: []
     },
-    duration: {
-      type: String, // e.g., "145 min" ya "2h 25m"
-      trim: true
-    },
+    // duration: {
+    //   type: String, // e.g., "145 min" ya "2h 25m"
+    //   trim: true
+    // },
     posterUrl: {
       type: String,
       required: [true, "Poster URL is required"],
@@ -46,23 +53,17 @@ const customMovieSchema = new mongoose.Schema(
       match: [/^https?:\/\/.+\..+/, "Please enter a valid URL"],
     },
 
-    trailerUrl: {
-      type: String,
-      trim: true,
-      match: [/^https?:\/\/.+\..+/, "Please enter a valid URL"],
-    },
-    videoUrl: {
-      type: String,
-      required: [true, "Video URL is required"],
-      trim: true,
-      match: [/^https?:\/\/.+\..+/, "Please enter a valid URL"],
-    },
-    averageRating: {
-      type: Number,
-      default: 0,
-      min: [0, "Rating cannot be less than 0"],
-      max: [10, "Rating cannot be more than 10"]
-    },
+    // trailerUrl: {
+    //   type: String,
+    //   trim: true,
+    //   match: [/^https?:\/\/.+\..+/, "Please enter a valid URL"],
+    // },
+    // averageRating: {
+    //   type: Number,
+    //   default: 0,
+    //   min: [0, "Rating cannot be less than 0"],
+    //   max: [10, "Rating cannot be more than 10"]
+    // },
     totalRatings: {
       type: Number,
       default: 0,

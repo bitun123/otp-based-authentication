@@ -8,9 +8,9 @@ const userRoutes = express.Router();
 
 userRoutes.post("/registration", userController.registerController);
 
-userRoutes.post("/verifyOtp", userController.verifyOtpController);
+// userRoutes.post("/verifyOtp", userController.verifyOtpController);
 
-userRoutes.post("/resendOtp", userController.resendOtpController);
+// userRoutes.post("/resendOtp", userController.resendOtpController);
 userRoutes.post("/login", userController.loginController);
 
 userRoutes.get("/profile", authUser, userController.getProfileController);
