@@ -137,6 +137,8 @@ async function addMovieController(req, res) {
       releaseDate,
       genre,
       category = "originals",
+      actorNames,
+      duration,
       videoUrl,
     } = req.body;
 
@@ -176,6 +178,8 @@ async function addMovieController(req, res) {
       releaseDate,
       genre: genre.toLowerCase(),
       category,
+      actorNames,
+      duration,
       posterUrl,
       videoUrl,
       addedBy: userId,

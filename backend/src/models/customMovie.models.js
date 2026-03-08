@@ -42,10 +42,10 @@ const customMovieSchema = new mongoose.Schema(
       type: [String],
       default: []
     },
-    // duration: {
-    //   type: String, // e.g., "145 min" ya "2h 25m"
-    //   trim: true
-    // },
+    duration: {
+      type: String, // e.g., "145 min" ya "2h 25m"
+      trim: true
+    },
     posterUrl: {
       type: String,
       required: [true, "Poster URL is required"],
@@ -53,11 +53,11 @@ const customMovieSchema = new mongoose.Schema(
       match: [/^https?:\/\/.+\..+/, "Please enter a valid URL"],
     },
 
-    // trailerUrl: {
-    //   type: String,
-    //   trim: true,
-    //   match: [/^https?:\/\/.+\..+/, "Please enter a valid URL"],
-    // },
+    videoUrl: {
+      type: String,
+      trim: true,
+      match: [/^https?:\/\/.+\..+/, "Please enter a valid URL"],
+    },
     // averageRating: {
     //   type: Number,
     //   default: 0,
