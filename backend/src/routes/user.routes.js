@@ -16,5 +16,7 @@ userRoutes.get("/favorite-movies", authUser, userController.getFavoriteMoviesCon
 userRoutes.post("/favorite-movies/:movieId", authUser, userController.addFavoriteMovieController);
 
 
+userRoutes.delete("/favorite-movies/:movieId", authUser, userController.removeFavoriteMovieController);
+
 
 module.exports = userRoutes;

@@ -3,8 +3,6 @@ const favoriteMovieModel = require("../models/favoriteMovie");
 const customMovieModel = require("../models/customMovie.models");
 //get user profile
 async function getUserProfileController(req, res) {
-
-
   try {
     const userId = req.user.id;
 
@@ -21,16 +19,12 @@ async function getUserProfileController(req, res) {
       message: "User profile retrieved successfully",
       user,
     });
-  }
-   catch (error) {
+  } catch (error) {
     res.status(error.statusCode || 500).json({
       message: error.message,
     });
   }
 }
-
-
-
 
 async function updateUserProfileController(req, res) {
   try {
@@ -61,7 +55,6 @@ async function updateUserProfileController(req, res) {
   }
 }
 
-
 async function getFavoriteMoviesController(req, res) {
   try {
     const userId = req.user.id;
@@ -82,12 +75,17 @@ async function getFavoriteMoviesController(req, res) {
   }
 }
 
-
-
 async function addFavoriteMovieController(req, res) {
   try {
     const userId = req.user.id;
-    const movieId = req.params.movieId;
+    let movieId = req.params.movieId;
+
+    // Validate movieId is provided and is a valid string
+    if (!movieId || typeof movieId !== 'string') {
+      const err = new Error("Valid Movie ID is required");
+      err.statusCode = 400;
+      throw err;
+    }
 
     const user = await userModel.findById(userId);
     if (!user) {
@@ -102,10 +100,10 @@ async function addFavoriteMovieController(req, res) {
       err.statusCode = 404;
       throw err;
     }
-const favoriteMovie = await favoriteMovieModel.create({
+    const favoriteMovie = await favoriteMovieModel.create({
       user: userId,
       CustomMovie: movieId,
-})
+    });
 
     res.status(201).json({
       message: "Movie added to favorites successfully",
@@ -118,9 +116,42 @@ const favoriteMovie = await favoriteMovieModel.create({
   }
 }
 
+async function removeFavoriteMovieController(req, res) {
+  try {
+    const userId = req.user.id;
+    const movieId = req.params.movieId;
+console.log("Removing favorite movie:", { userId, movieId });
+
+    if (!movieId) {
+      const err = new Error("Movie ID is required");
+      err.statusCode = 400;
+      throw err;
+    }
+
+   const favorite = await favoriteMovieModel.findByIdAndDelete(movieId);
+
+console.log("Favorite removed:", favorite);
+
+    if (!favorite) {
+      const err = new Error("Favorite not found");
+      err.statusCode = 404;
+      throw err;
+    }
+
+    res.status(200).json({
+      message: "Movie removed from favorites successfully",
+    });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({
+      message: error.message,
+    });
+  }
+}
+
 module.exports = {
   getUserProfileController,
   updateUserProfileController,
   getFavoriteMoviesController,
-  addFavoriteMovieController
+  addFavoriteMovieController,
+  removeFavoriteMovieController
 };
