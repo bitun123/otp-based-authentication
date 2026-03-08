@@ -4,9 +4,9 @@ const session = require("express-session");
 /**
  * @Routes importing
  */
-const userRoutes = require("./routes/user.routes");
+const authRoutes = require("./routes/auth.routes");
 const adminRoutes = require("./routes/admin.routes");
-
+const userRoutes = require("./routes/user.routes");
 
 
 const app = express();
@@ -24,6 +24,7 @@ app.use(
 /**
  * @Routes using
  */
-app.use("/api/auth", userRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/user", userRoutes);
 module.exports = app;

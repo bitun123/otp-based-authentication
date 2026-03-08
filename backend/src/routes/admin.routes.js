@@ -27,15 +27,18 @@ adminRoutes.delete("/user/delete-user/:userId",authUser,isAdmin, adminController
 
 //**control movie */  
 
+//admin can see all movies
 adminRoutes.get("/movies/all-movies", authUser, isAdmin, adminController.getAllMoviesController);
 
-
+//admin can add a movie
 adminRoutes.post("/movies/add-movie", upload.single("posterUrl"), authUser, isAdmin, adminController.addMovieController);
 
 
-
+//admin can update a movie
 adminRoutes.patch("/movies/update-movie/:movieId", upload.single("posterUrl"), authUser, isAdmin, adminController.updateMovieController);
 
+
+//admin can delete a movie
 adminRoutes.delete("/movies/delete-movie/:movieId", authUser, isAdmin, adminController.deleteMovieController);
 
 
