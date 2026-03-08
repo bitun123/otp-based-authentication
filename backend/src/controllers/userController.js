@@ -33,7 +33,7 @@ async function registerController(req, res) {
     const token = jwt.sign(
       {
         id: user._id,
-          role: user.role
+        role: user.role,
       },
       process.env.JWT_SECRET_KEY,
       { expiresIn: "1h" },
@@ -130,7 +130,7 @@ async function loginController(req, res) {
     const token = jwt.sign(
       {
         id: user._id,
-        role: user.role
+        role: user.role,
       },
       process.env.JWT_SECRET_KEY,
       {
@@ -155,14 +155,41 @@ async function loginController(req, res) {
   }
 }
 
-
-async function getProfileController(req,res){
+async function getProfileController(req, res) {
   try {
-      const user = await userModel.findById(req.user.id);
-  res.status(200).json({
-    message: "all users fetched successfully",
-    user,
-  });
+    const user = await userModel.findById(req.user.id);
+    res.status(200).json({
+      message: "all users fetched successfully",
+      user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+}
+
+async function updateProfileController(req, res) {
+  try {
+    const user = await userModel.findById(req.user.id).select("+password");
+    if (!user) {
+      const err = new Error("User not found");
+      err.statusCode = 404;
+      throw err;
+    }
+
+    const updates = req.body;
+    if (updates.userName) user.userName = updates.userName;
+    if (updates.email) user.email = updates.email;
+    if (updates.password) user.password = updates.password; // pre-save hook hashes it
+    await user.save();
+    res.status(200).json({
+      message: "Profile updated successfully",
+      user: {
+        userName: user.userName,
+        email: user.email,
+      },
+    });
   } catch (error) {
     res.status(500).json({
       message: error.message,
@@ -172,14 +199,14 @@ async function getProfileController(req,res){
 
 async function logoutController(req, res) {
   try {
-  const token = req.cookies.token;
-  await redis.set(token, "blacklisted");
-  res.clearCookie("token");
+    const token = req.cookies.token;
+    await redis.set(token, "blacklisted");
+    res.clearCookie("token");
 
-  res.status(201).json({
-    message: "user logged out successfully",
-    token,
-  });
+    res.status(201).json({
+      message: "user logged out successfully",
+      token,
+    });
   } catch (error) {
     res.status(500).json({
       message: error.message,
@@ -187,12 +214,12 @@ async function logoutController(req, res) {
   }
 }
 
-
 module.exports = {
   registerController,
   verifyOtpController,
   resendOtpController,
   loginController,
   getProfileController,
-  logoutController
+  updateProfileController,
+  logoutController,
 };
