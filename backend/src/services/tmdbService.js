@@ -32,11 +32,17 @@ const getMovie  = {
 }
 
 const getTv = {
-   getTrending: (window = 'week', page = 1) => get(`/trending/tv/${window}`, { page }),
+      getTrending: (window = 'week', page = 1) => get(`/trending/tv/${window}`, { page }),
     getPopular: (page = 1) => get('/tv/popular', { page }),
     getTopRated: (page = 1) => get('/tv/top_rated', { page }),
     getAiringToday: (page = 1) => get('/tv/airing_today', { page }),
-    getTvDetails: (tvId) => get(`/tv/${tvId}`),
+    getOnTheAir: (page = 1) => get('/tv/on_the_air', { page }),
+    getDetails: (id) => get(`/tv/${id}`),
+    getVideos: (id) => get(`/tv/${id}/videos`),
+    getCredits: (id) => get(`/tv/${id}/credits`),
+    getSimilar: (id, page = 1) => get(`/tv/${id}/similar`, { page }),
+    getSeasonDetails: (id, season) => get(`/tv/${id}/season/${season}`),
+    getGenres: () => get('/genre/tv/list'),
 }
 
 const search = {
