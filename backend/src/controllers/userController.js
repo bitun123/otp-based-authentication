@@ -153,9 +153,9 @@ console.log("Favorite removed:", favorite);
   }
 }
 
-async function addToHistoryController(req, res) {
+// async function addToHistoryController(req, res) {
 
-}
+// }
 
 
 
@@ -166,5 +166,5 @@ module.exports = {
   getFavoriteMoviesController,
   addFavoriteMovieController,
   removeFavoriteMovieController,
-  addToHistoryController
+  // addToHistoryController
 };

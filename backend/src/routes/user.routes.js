@@ -19,9 +19,9 @@ userRoutes.post("/favorite-movies/:movieId", authUser, userController.addFavorit
 userRoutes.delete("/favorite-movies/:movieId", authUser, userController.removeFavoriteMovieController);
 
 
-userRoutes.post("/history", authUser, userController.addToHistoryController);
+// userRoutes.post("/history", authUser, userController.addToHistoryController);
 
-userRoutes.get("/history", authUser, userController.getHistoryController);
+// userRoutes.get("/history", authUser, userController.getHistoryController);
 
 
 
