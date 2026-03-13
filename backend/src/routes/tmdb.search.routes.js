@@ -1,6 +1,6 @@
 const {Router}  = require("express")
 
-const tmdbSearchController = require("../controllers/tmdbSearchController");
+const tmdbSearchController  = require("../controllers/tmdbSearchController")
 
 const tmdbSearchRoutes = Router();
 
