@@ -7,9 +7,9 @@ const session = require("express-session");
 const authRoutes = require("./routes/auth.routes");
 const adminRoutes = require("./routes/admin.routes");
 const userRoutes = require("./routes/user.routes");
-const tmdbMoviesRoutes  = require("./routes/tmdbMovies.routes");
-const tmdbTvRoutes  = require("./routes/tmdbTv.routes")
-
+const tmdbMoviesRoutes = require("./routes/tmdbMovies.routes");
+const tmdbTvRoutes = require("./routes/tmdbTv.routes");
+const tmdbSearchRoutes = require("./routes/tmdbSearch.routes");
 
 const app = express();
 
@@ -31,5 +31,6 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/tmdb", tmdbMoviesRoutes);
 app.use("/api/tmdb", tmdbTvRoutes);
+app.use("/api/tmdb", tmdbSearchRoutes);
 
 module.exports = app;
