@@ -150,7 +150,7 @@ async function loginController(req, res) {
 
 async function getProfileController(req, res) {
   try {
-    const user = await userModel.findById(req.user.id);
+    const user = await userModel.find();
     res.status(200).json({
       message: "all users fetched successfully",
       user,
