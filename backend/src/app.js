@@ -1,6 +1,7 @@
 const express = require("express");
 const cookie = require("cookie-parser");
 const session = require("express-session");
+const cors = require("cors");
 /**
  * @Routes importing
  */
@@ -9,12 +10,18 @@ const adminRoutes = require("./routes/admin.routes");
 const userRoutes = require("./routes/user.routes");
 const tmdbMoviesRoutes = require("./routes/tmdbMovies.routes");
 const tmdbTvRoutes = require("./routes/tmdbTv.routes");
-const tmdbSearchRoutes = require("./routes/tmdbSearch.routes");
+const tmdbSearchRoutes = require("./routes/tmdb.search.routes");
 
 const app = express();
 
 app.use(express.json());
 app.use(cookie());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
 
 app.use(
   session({

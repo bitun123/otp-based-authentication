@@ -1,6 +1,6 @@
 const tmdbService = require("../services/tmdbService");
 
-const getTrendingTv = async (req, res) => {
+const getTrendingAllTvsController = async (req, res) => {
   try {
     const { window = 'week', page = 1 } = req.query;
     const data = await tmdbService.getTv.getTrending(window, parseInt(page));
@@ -10,7 +10,7 @@ const getTrendingTv = async (req, res) => {
   }
 };
 
-const getPopularTv = async (req, res) => {
+const getPopularTvsController = async (req, res) => {
   try {
     const { page = 1 } = req.query;
     const data = await tmdbService.getTv.getPopular(parseInt(page));
@@ -20,7 +20,7 @@ const getPopularTv = async (req, res) => {
   }
 };
 
-const getTopRatedTv = async (req, res) => {
+const getTopRatedTvsController = async (req, res) => {
   try {
     const { page = 1 } = req.query;
     const data = await tmdbService.getTv.getTopRated(parseInt(page));
@@ -30,7 +30,7 @@ const getTopRatedTv = async (req, res) => {
   }
 };
 
-const getAiringTodayTv = async (req, res) => {
+const getAiringTodayTvController = async (req, res) => {
   try {
     const { page = 1 } = req.query;
     const data = await tmdbService.getTv.getAiringToday(parseInt(page));
@@ -40,7 +40,7 @@ const getAiringTodayTv = async (req, res) => {
   }
 };
 
-const getOnTheAirTv = async (req, res) => {
+const getOnTheAirTvController = async (req, res) => {
   try {
     const { page = 1 } = req.query;
     const data = await tmdbService.getTv.getOnTheAir(parseInt(page));
@@ -50,7 +50,7 @@ const getOnTheAirTv = async (req, res) => {
   }
 };
 
-const getTvDetails = async (req, res) => {
+const getDetailsTvsController = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await tmdbService.getTv.getDetails(id);
@@ -60,7 +60,7 @@ const getTvDetails = async (req, res) => {
   }
 };
 
-const getTvVideos = async (req, res) => {
+const getVideoTvsController = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await tmdbService.getTv.getVideos(id);
@@ -70,7 +70,7 @@ const getTvVideos = async (req, res) => {
   }
 };
 
-const getTvCredits = async (req, res) => {
+const getCreditsTvsController = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await tmdbService.getTv.getCredits(id);
@@ -80,7 +80,7 @@ const getTvCredits = async (req, res) => {
   }
 };
 
-const getSimilarTv = async (req, res) => {
+const getSimilarTvsController = async (req, res) => {
   try {
     const { id } = req.params;
     const { page = 1 } = req.query;
@@ -91,7 +91,7 @@ const getSimilarTv = async (req, res) => {
   }
 };
 
-const getTvSeasonDetails = async (req, res) => {
+const getSeasonDetailsTvsController = async (req, res) => {
   try {
     const { id, season } = req.params;
     const data = await tmdbService.getTv.getSeasonDetails(id, season);
@@ -101,7 +101,7 @@ const getTvSeasonDetails = async (req, res) => {
   }
 };
 
-const getTvGenres = async (req, res) => {
+const getGenresTvsController = async (req, res) => {
   try {
     const data = await tmdbService.getTv.getGenres();
     res.json(data);
@@ -111,15 +111,15 @@ const getTvGenres = async (req, res) => {
 };
 
 module.exports = {
-  getTrendingTv,
-  getPopularTv,
-  getTopRatedTv,
-  getAiringTodayTv,
-  getOnTheAirTv,
-  getTvDetails,
-  getTvVideos,
-  getTvCredits,
-  getSimilarTv,
-  getTvSeasonDetails,
-  getTvGenres
+  getTrendingAllTvsController,
+  getPopularTvsController,
+  getTopRatedTvsController,
+  getAiringTodayTvController,
+  getOnTheAirTvController,
+  getDetailsTvsController,
+  getVideoTvsController,
+  getCreditsTvsController,
+  getSimilarTvsController,
+  getSeasonDetailsTvsController,
+  getGenresTvsController
 };

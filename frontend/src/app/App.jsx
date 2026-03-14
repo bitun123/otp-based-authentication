@@ -1,8 +1,9 @@
 import React from 'react'
-
+import { RouterProvider } from 'react-router-dom'
+import { routes } from './App.Routes'
 function App() {
   return (
-    <div>App</div>
+    <RouterProvider router={routes} />
   )
 }
 
