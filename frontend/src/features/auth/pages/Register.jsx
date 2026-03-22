@@ -20,18 +20,30 @@ function Register() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-950 via-red-900 to-slate-900 flex items-center justify-center p-4">
-            <div className="w-full max-w-lg bg-gradient-to-br from-slate-900 to-red-800 rounded-xl shadow-2xl p-8 border border-red-400 border-opacity-30">
+        <div className="min-h-screen flex items-center justify-center bg-[url('/public/Signup.png')] bg-cover bg-black/90 p-4">
+            <div className="w-full max-w-[28rem] bg-[#353534]/70 backdrop-blur-md rounded-[0.75rem] p-[3rem] flex flex-col justify-center gap-[2rem] lg:h-[43rem]">
                 {/* Title */}
-                <h1 className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-red-300 via-red-400 to-red-500 bg-clip-text text-transparent">
-                    Register
-                </h1>
+
+                <div className='w-full flex flex-col gap-[0.5rem] text-center'>
+                    <p className="text-[#E5E2E1] font-[var(--font-jakarta)] text-[1.875rem] 
+           font-medium 
+           leading-[2.25rem] 
+           tracking-[-0.75px]">
+                        Begin Your Journey
+                    </p>
+                    <p className=' font-[var(--font-inter)] text-[#E9BCB6]   text-[0.875rem] 
+          font-normal 
+          leading-[1.25rem] 
+          tracking-[0px]"'>
+                        Curate your own cinematic universe today.
+                    </p>
+                </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="w-full flex flex-col gap-[1.5rem] ">
                     {/* Phone Field */}
-                    <div>
-                        <label htmlFor="phone" className="block text-sm font-semibold text-red-300 uppercase tracking-wide mb-2">
+                    <div className='flex flex-col w-full gap-[0.4rem]'>
+                        <label htmlFor="phone" className="font-['Inter'] text-[0.75rem] leading-[1rem] tracking-[1.2px] uppercase text-[#E9BCB6]">
                             Phone Number
                         </label>
                         <input
@@ -41,14 +53,14 @@ function Register() {
                             value={phone}
                             onChange={(e) => setphone(e.target.value)}
                             placeholder="Enter your phone number"
-                            className="w-full px-4 py-3 bg-slate-800 bg-opacity-60 border-2 border-red-400 border-opacity-40 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-400 focus:bg-opacity-100 transition-all duration-200"
+                      className="w-full bg-[#2A2A2A] text-[#b7b7b7] rounded-[0.5rem] px-[1.1rem] py-[1rem] border-none focus:outline-none text-[1rem] font-[var(--font-inter)] leading-[1.5rem] tracking-[0px]"
                             required
                         />
                     </div>
 
                     {/* Username Field */}
-                    <div>
-                        <label htmlFor="userName" className="block text-sm font-semibold text-red-300 uppercase tracking-wide mb-2">
+                    <div className='flex flex-col w-full gap-[0.4rem]'>
+                        <label htmlFor="userName" className="font-['Inter'] text-[0.75rem] leading-[1rem] tracking-[1.2px] uppercase text-[#E9BCB6]">
                             Username
                         </label>
                         <input
@@ -58,14 +70,14 @@ function Register() {
                             value={userName}
                             onChange={(e) => setuserName(e.target.value)}
                             placeholder="Choose a username"
-                            className="w-full px-4 py-3 bg-slate-800 bg-opacity-60 border-2 border-red-400 border-opacity-40 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-400 focus:bg-opacity-100 transition-all duration-200"
+                           className="w-full bg-[#2A2A2A] text-[#b7b7b7] rounded-[0.5rem] px-[1.1rem] py-[1rem] border-none focus:outline-none text-[1rem] font-[var(--font-inter)] leading-[1.5rem] tracking-[0px]"
                             required
                         />
                     </div>
 
                     {/* Email Field */}
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-semibold text-red-300 uppercase tracking-wide mb-2">
+                    <div className='flex flex-col w-full gap-[0.4rem]'>
+                        <label htmlFor="email" className="font-['Inter'] text-[0.75rem] leading-[1rem] tracking-[1.2px] uppercase text-[#E9BCB6]">
                             Email
                         </label>
                         <input
@@ -75,14 +87,14 @@ function Register() {
                             value={email}
                             onChange={(e) => setemail(e.target.value)}
                             placeholder="Enter your email"
-                            className="w-full px-4 py-3 bg-slate-800 bg-opacity-60 border-2 border-red-400 border-opacity-40 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-400 focus:bg-opacity-100 transition-all duration-200"
+                              className="w-full bg-[#2A2A2A] text-[#b7b7b7] rounded-[0.5rem] px-[1.1rem] py-[1rem] border-none focus:outline-none text-[1rem] font-[var(--font-inter)] leading-[1.5rem] tracking-[0px]"
                             required
                         />
                     </div>
 
                     {/* Password Field */}
-                    <div>
-                        <label htmlFor="password" className="block text-sm font-semibold text-red-300 uppercase tracking-wide mb-2">
+                    <div className='flex flex-col w-full gap-[0.4rem]'>
+                        <label htmlFor="password" className="font-['Inter'] text-[0.75rem] leading-[1rem] tracking-[1.2px] uppercase text-[#E9BCB6]">
                             Password
                         </label>
                         <div className="relative">
@@ -93,39 +105,40 @@ function Register() {
                                 value={password}
                                 onChange={(e) => setpassword(e.target.value)}
                                 placeholder="Create a password"
-                                className="w-full px-4 py-3 pr-12 bg-slate-800 bg-opacity-60 border-2 border-red-400 border-opacity-40 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-400 focus:bg-opacity-100 transition-all duration-200"
+                               className="w-full bg-[#2A2A2A] text-[#b7b7b7] rounded-[0.5rem] px-[1.1rem] py-[1rem] border-none focus:outline-none text-[1rem] font-[var(--font-inter)] leading-[1.5rem] tracking-[0px]"
                                 required
                             />
                             <button
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-3 text-red-300 hover:text-red-200 text-xl transition-colors"
+                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 focus:outline-none"
                             >
                                 {showPassword ? '👁️' : '👁️‍🗨️'}
                             </button>
                         </div>
                     </div>
 
-                    {/* Submit Button */}
+           
                     <button
-                        type="submit"
-                        className="w-full mt-6 py-3 px-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold uppercase tracking-wide rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-red-400/50"
+                    type='submit'
+                    className="w-full bg-[#E50914] text-white rounded-[0.5rem] px-[1.1rem] py-[1rem] border-none focus:outline-none text-[1rem] font-[var(--font-jakarta)] font-medium leading-[1.5rem] tracking-[0px] active:scale-95 transition-transform duration-150 cursor-pointer"
                     >
-                        Register
+                        CREATE ACCOUNT
                     </button>
                 </form>
 
                 {/* Navigation to Login */}
-                <div className="mt-8 pt-6 border-t border-red-400 border-opacity-30 text-center">
-                    <p className="text-gray-400 text-sm mb-4">Already have an account?</p>
+           <div className="w-full flex items-center justify-center gap-[1rem]">
+                    <p className='text-[0.9rem] font-[var(--font-inter)] text-[#b7b7b7]  text-center'>Already have an account? </p>
                     <button
-                        type="button"
-                        onClick={() => navigate('/login')}
-                        className="px-6 py-2 border-2 border-red-400 text-red-300 font-semibold rounded-lg hover:bg-red-400 hover:bg-opacity-15 hover:text-red-200 transition-all duration-200 uppercase tracking-wide"
+                        onClick={() => navigate("/login")}
+                        className="text-[0.9rem] font-[var(--font-inter)] text-white
+                           font-bold leading-[1.25rem]  cursor-pointer  transition-all duration-200 
+                           "
                     >
-                        Login here
+                        Sign In
                     </button>
-                </div>
+           </div>
             </div>
         </div>
     )
