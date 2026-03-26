@@ -108,7 +108,7 @@ async function loginController(req, res) {
 
     if (!user) {
       return res.status(400).json({
-        message: "invalid credentials",
+        message: "user not found",
       });
     }
 

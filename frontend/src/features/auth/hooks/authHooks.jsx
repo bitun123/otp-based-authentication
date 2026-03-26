@@ -13,6 +13,7 @@ export const useAuth = () => {
             const response = await register({ userName, phone, email, password })
         } catch (error) {
 dispatch(setError(error.response?.data?.message || "Registration failed"))
+throw error
         }
         finally{
             dispatch(setLoading(false))
@@ -26,6 +27,8 @@ dispatch(setError(error.response?.data?.message || "Registration failed"))
             dispatch(setUser(response.user))
         } catch (error) {
             dispatch(setError(error.response?.data?.message || "Login failed"))
+            throw error
+
         }
         finally {
             dispatch(setLoading(false))
@@ -39,6 +42,8 @@ dispatch(setError(error.response?.data?.message || "Registration failed"))
             dispatch(setUser(response.user))
         } catch (error) {
             dispatch(setError(error.response?.data?.message || "Failed to fetch profile"))
+            throw error
+
         }
         finally {
             dispatch(setLoading(false))

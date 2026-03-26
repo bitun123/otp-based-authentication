@@ -20,9 +20,9 @@ function Register() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[url('/public/Signup.png')] bg-cover bg-black/90 p-4">
-            <div className="w-full max-w-[28rem] bg-[#353534]/70 backdrop-blur-md rounded-[0.75rem] p-[3rem] flex flex-col justify-center gap-[2rem] lg:h-[43rem]">
-                {/* Title */}
+        <div className="min-h-screen flex items-center justify-center bg-[url('/public/Signup.png')] bg-cover bg-black/90 p-2">
+            <div className="w-full max-w-[28rem] bg-[#353534]/70 backdrop-blur-md rounded-[0.75rem] p-[1rem] flex flex-col justify-center gap-[1.1rem] ">
+                {/* Title */}   
 
                 <div className='w-full flex flex-col gap-[0.5rem] text-center'>
                     <p className="text-[#E5E2E1] font-[var(--font-jakarta)] text-[1.875rem] 
@@ -35,12 +35,12 @@ function Register() {
           font-normal 
           leading-[1.25rem] 
           tracking-[0px]"'>
-                        Curate your own cinematic universe today.
+                                Create your own cinematic universe today.
                     </p>
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="w-full flex flex-col gap-[1.5rem] ">
+                <form onSubmit={handleSubmit} className="w-full flex flex-col gap-[1rem] ">
                     {/* Phone Field */}
                     <div className='flex flex-col w-full gap-[0.4rem]'>
                         <label htmlFor="phone" className="font-['Inter'] text-[0.75rem] leading-[1rem] tracking-[1.2px] uppercase text-[#E9BCB6]">

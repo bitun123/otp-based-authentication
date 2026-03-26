@@ -19,10 +19,10 @@ function Login() {
     }
 
     return (
-        <div className="min-h-screen bg-[url('/public/backgroundLogin.png')] bg-center bg-cover bg-no-repeat flex items-center justify-left  p-5 pl-6 relative">
-            <div className="w-[28rem] h-[38rem]  bg-[#353534]/40  backdrop-blur-md rounded-[0.75rem]   p-[3rem] flex flex-col justify-center gap-[2rem]">
+        <div className="min-h-screen w-full bg-[url('/public/backgroundLogin.png')]  bg-center bg-cover bg-no-repeat flex items-center justify-left  p-5 pl-6 relative">
+            <div className="  bg-[#353534]/40  backdrop-blur-md rounded-[0.75rem]   p-[1rem] flex flex-col justify-center gap-[1rem]">
                 {/* Title */}
-                <div className="flex flex-col gap-[0.5rem] w-[20.87rem] h-[4.25rem] ">
+                <div className="flex flex-col gap-[0.5rem] ">
 
                     <h1 className="text-[#E5E2E1] font-[var(--font-jakarta)] text-[2.25rem] font-extrabold leading-[2.5rem] tracking-[-0.9px]">
                         Sign In
@@ -34,7 +34,7 @@ function Login() {
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="w-[20.87rem] h-[20.37rem] flex flex-col gap-[1.5rem]">
+                <form onSubmit={handleSubmit} className="  flex flex-col gap-[1.5rem]">
                     {/* Username/Email Field */}
                     <div className='flex flex-col w-[100%] h-[4.81rem] gap-[0.4rem]'>
                         <label htmlFor="userName" className="font-['Inter'] text-[0.75rem] leading-[1rem] tracking-[1.2px] uppercase text-[#E9BCB6]  ">
@@ -105,7 +105,7 @@ function Login() {
                 </form>
 
                 {/* Navigation to Register */}
-                <div className="w-[20.87rem] h-[5.37rem]  flex flex-col gap-[1rem] pt-5">
+                <div className="   flex flex-col gap-[1rem] pt-5">
 
                     <div className='w-[100%] h-[1.3rem] flex gap-[0.5rem]'>
 
